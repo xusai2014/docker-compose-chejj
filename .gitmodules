@@ -1,0 +1,12 @@
+[submodule "nginx-proxy"]
+	path = nginx-proxy
+	url = git@github.com:xusai2014/nginx-proxy.git
+[submodule "music-video"]
+	path = music-video
+	url = git@github.com:xusai2014/music-video.git
+[submodule "PublicShare"]
+	path = PublicShare
+	url = git@github.com:PublicFE/PublicShare.git
+[submodule "TalkCar"]
+	path = TalkCar
+	url = git@github.com:xusai2014/TalkCar.git

@@ -1,0 +1,41 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  nginx:
+    build: ./nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /data/https-file:/root/https-file
+    links:
+      - video
+      - www
+      - api-service
+  mongodb:
+    image: mongo:5.0.5
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db:/data/db
+    links:
+      - video
+      - www
+      - api-service
+  video:
+    build: ./music-video
+    ports:
+      - "5000:5000"
+    links:
+      - mongodb
+      - nginx
+  www:
+    build: ./TalkCar
+    ports:
+      - "3000:3000"
+  api-service:
+    build: ./PublicShare
+    ports:
+      - "4000:4000"
+volumes:
+  logvolume01: {}
