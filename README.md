@@ -20,3 +20,10 @@ docker build -t api-service .
 docker tag api-service:latest xusai2014/api-service
 docker push xusai2014/api-service
 ```
+
+```
+sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' -e 's|^#baseurl=http://mirror.centos.org/$contentdir|baseurl=https://mirrors.ustc.edu.cn/centos|g' -i.bak /etc/yum.repos.d/CentOS-Linux-AppStream.repo /etc/yum.repos.d/CentOS-Linux-BaseOS.repo /etc/yum.repos.d/CentOS-Linux-Extras.repo /etc/yum.repos.d/CentOS-Linux-PowerTools.repo /etc/yum.repos.d/CentOS-Linux-Plus.repo
+
+yum install https://download.docker.com/linux/fedora/30/x86_64/stable/Packages/containerd.io-1.2.6-3.3.fc30.x86_64.rpm
+yum -y  install docker-ce --nobest
+```
