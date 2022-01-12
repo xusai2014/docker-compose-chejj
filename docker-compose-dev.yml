@@ -1,11 +1,10 @@
 version: "3.9"  # optional since v1.27.0
 services:
   nginx:
-    build:
-      context: ./nginx-proxy
+    image: xusai2014/nginx-proxy:latest
     ports:
-      - "80:80"
-      - "443:443"
+      - "3001:3001"
+      - "4001:4001"
     volumes:
       - ./data/https-file:/root/https-file
     links:
@@ -23,19 +22,8 @@ services:
       - "27017:27017"
     volumes:
       - ./data/db:/data/db
-
-  video:
-    build:
-      context: ./music-video
-    ports:
-      - "6000:80"
-    links:
-      - mongodb:localhost
-    depends_on:
-      - mongodb
   www:
-    build:
-      context: ./TalkCar
+    image: xusai2014/www
     ports:
       - "3000:80"
     links:
@@ -43,10 +31,17 @@ services:
     depends_on:
       - mongodb
   api-service:
-    build:
-      context: ./PublicShare
+    image: xusai2014/api-service
     ports:
-      - "4000:80"
+      - "3003:80"
+    links:
+      - mongodb:localhost
+    depends_on:
+      - mongodb
+  video:
+    image: xusai2014/music-video
+    ports:
+      - "3004:80"
     links:
       - mongodb:localhost
     depends_on:

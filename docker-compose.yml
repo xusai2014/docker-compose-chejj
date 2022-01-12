@@ -8,7 +8,11 @@ services:
     volumes:
       - /data/https-file:/root/https-file
     links:
-      - video
+      - video:localhost
+      - www:localhost
+      - api-service:localhost
+    depends_on:
+      - mongodb
       - www
       - api-service
   mongodb:
@@ -18,30 +22,30 @@ services:
       - "27017:27017"
     volumes:
       - /data/db:/data/db
-    links:
-      - video
-      - www
-      - api-service
+
   video:
     image: xusai2014/music-video
     ports:
       - "5000:80"
     links:
+      - mongodb:localhost
+    depends_on:
       - mongodb
-      - nginx
   www:
     image: xusai2014/www
     ports:
       - "3000:80"
     links:
+      - mongodb:localhost
+    depends_on:
       - mongodb
-      - nginx
   api-service:
-    image: xusai2014/www
+    image: xusai2014/api-service
     ports:
       - "4000:80"
     links:
+      - mongodb:localhost
+    depends_on:
       - mongodb
-      - nginx
 volumes:
   logvolume01: {}
