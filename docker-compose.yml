@@ -6,7 +6,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /data/https-file:/root/https-file
+      - ./data/https-file:/root/https-file
     links:
       - video:localhost
       - www:localhost
@@ -21,7 +21,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /data/db:/data/db
+      - ./data/db:/data/db
   www:
     image: xusai2014/www
     ports:
