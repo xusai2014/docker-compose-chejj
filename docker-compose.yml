@@ -22,15 +22,6 @@ services:
       - "27017:27017"
     volumes:
       - /data/db:/data/db
-
-  video:
-    image: xusai2014/music-video
-    ports:
-      - "5000:80"
-    links:
-      - mongodb:localhost
-    depends_on:
-      - mongodb
   www:
     image: xusai2014/www
     ports:
@@ -42,7 +33,15 @@ services:
   api-service:
     image: xusai2014/api-service
     ports:
-      - "4000:80"
+      - "3003:80"
+    links:
+      - mongodb:localhost
+    depends_on:
+      - mongodb
+  video:
+    image: xusai2014/music-video
+    ports:
+      - "3004:80"
     links:
       - mongodb:localhost
     depends_on:
