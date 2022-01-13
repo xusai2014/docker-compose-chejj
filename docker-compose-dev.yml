@@ -10,11 +10,11 @@ services:
     links:
       - video:localhost
       - www:localhost
-      - api-service:localhost
+      - api_service:localhost
     depends_on:
       - mongodb
       - www
-      - api-service
+      - api_service
   mongodb:
     image: mongo:5.0.5
     restart: always
@@ -30,7 +30,7 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
-  api-service:
+  api_service:
     image: xusai2014/api-service
     ports:
       - "3003:80"
