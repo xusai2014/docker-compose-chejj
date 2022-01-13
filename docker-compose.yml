@@ -34,6 +34,8 @@ services:
     image: xusai2014/api-service
     ports:
       - "3003:80"
+    volumes:
+      - /root/data/weixin:/root/weixin
     links:
       - mongodb:localhost
     depends_on:
