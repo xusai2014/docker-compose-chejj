@@ -10,7 +10,7 @@ services:
     links:
       - video:localhost
       - www:localhost
-      - api-service:localhost
+      - api_service:localhost
     depends_on:
       - mongodb
       - www
