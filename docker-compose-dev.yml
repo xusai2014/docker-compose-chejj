@@ -1,7 +1,8 @@
-version: "3.9"  # optional since v1.27.0
+version: "2.2.1"  # optional since v1.27.0
 services:
   nginx:
     image: xusai2014/nginx-proxy:latest
+    mem_limit: 1024m
     ports:
       - "3001:3001"
       - "4001:4001"
@@ -17,6 +18,7 @@ services:
       - api_service
   mongodb:
     image: mongo:5.0.5
+    mem_limit: 1024m
     restart: always
     ports:
       - "27017:27017"
@@ -24,6 +26,7 @@ services:
       - ./data/db:/data/db
   www:
     image: xusai2014/www
+    mem_limit: 1024m
     ports:
       - "3000:80"
     links:
@@ -32,6 +35,7 @@ services:
       - mongodb
   api_service:
     image: xusai2014/api-service
+    mem_limit: 1024m
     ports:
       - "3003:80"
     links:
@@ -40,6 +44,7 @@ services:
       - mongodb
   video:
     image: xusai2014/music-video
+    mem_limit: 1024m
     ports:
       - "3004:80"
     links:
