@@ -17,6 +17,7 @@ services:
       - mongodb
       - www
       - api_service
+      - useweb3
   mongodb:
     image: mongo:5.0.5
     mem_limit: 1024m
@@ -54,6 +55,11 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
+  useweb3:
+    image: xusai2014/useweb3
+    mem_limit: 512m
+    ports:
+      - "3005:80"
 
 volumes:
   logvolume01: {}
