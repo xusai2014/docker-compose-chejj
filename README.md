@@ -1,8 +1,15 @@
-##
+## 车唧唧服务是提供车咨询的聚合平台
 
 ###
-
+服务部署
 ```shell
+docker-compose -f ./docker-compose-chejj/docker-compose.yml up -d
+docker-compose -f ./docker-compose-chejj/docker-compose.yml down api_service
+docker-compose -f ./docker-compose-chejj/docker-compose.yml pull nginx
+
+```
+
+
 ```shell
 docker build -t nginx-proxy .
 docker tag nginx-proxy:latest xusai2014/nginx-proxy
