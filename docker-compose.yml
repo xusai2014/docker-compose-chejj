@@ -60,6 +60,8 @@ services:
     mem_limit: 512m
     ports:
       - "3005:80"
+    volumes:
+      - /root/data/useweb3/.env.local:/app/.env.local
 
 volumes:
   logvolume01: {}
