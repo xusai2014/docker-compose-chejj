@@ -1,4 +1,15 @@
-## 车唧唧服务是提供车咨询的聚合平台
+## 车唧唧服务是提供车资讯的开放平台
+
+## 项目管理
+
+采用项目集合形式管理，通过git 子模块关联实现部署的一致性
+```shell
+git submodule add [git url]
+git diff --cached --submodule
+git submodule update
+```
+
+
 
 ###
 服务部署
