@@ -62,6 +62,15 @@ services:
       - "3005:80"
     volumes:
       - /root/data/useweb3/.env.local:/app/.env.local
+  web3_info:
+    image: xusai2014/web3info
+    mem_limit: 512m
+    ports:
+      - "3006:80"
+    links:
+      - mongodb:localhost
+    depends_on:
+      - mongodb
 
 volumes:
   logvolume01: {}
