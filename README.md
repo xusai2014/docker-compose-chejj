@@ -1,3 +1,4 @@
+
 ## 车唧唧服务是提供车资讯的开放平台
 
 ## 项目管理
@@ -8,6 +9,33 @@ git submodule add [git url]
 git diff --cached --submodule
 git submodule update
 ```
+
+## 服务监控
+grafana + prometheus
+
+collect OS data
+collect docker data
+
+```shell
+vi /etc/docker/daemon.json
+# daemon.json
+{
+  "metrics-addr" : "127.0.0.1:9323",
+  "experimental" : true
+}
+
+# update prometheus yml
+
+ static_configs:
+      - targets: ['host.docker.internal:9323']
+
+```
+
+## 定时任务
+
+性能分析 - CPU负载高
+
+解决方案 - CPU Limit & replace node-schedule with pm cron start
 
 
 
