@@ -12,11 +12,17 @@ services:
       - video:localhost
       - www:localhost
       - api_service:localhost
+      - grafana:localhost
+      - prometheus:localhost
+      - node-exporter:localhost
     depends_on:
       - mongodb
       - www
       - api_service
       - useweb3
+      - grafana
+      - prometheus
+      - node-exporter
   mongodb:
     image: mongo:5.0.5
     mem_limit: 512m
