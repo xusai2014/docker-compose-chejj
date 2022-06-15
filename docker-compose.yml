@@ -1,6 +1,5 @@
 version: "2.2.1"  # optional since v1.27.0
 services:
-
   nginx:
     image: xusai2014/nginx-proxy:latest
     mem_limit: 256m
@@ -71,6 +70,19 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "3007:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    ports:
+      - '3008:9100'
 
 volumes:
   logvolume01: {}
