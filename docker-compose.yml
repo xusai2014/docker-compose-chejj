@@ -84,11 +84,8 @@ services:
       - "3007:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - /bin/bash
-        - -c
-        - |
-        ip -4 route list match 0/0 | awk '{print $$3 " host.docker.internal"}' >> /etc/hosts
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   node-exporter:
     container_name: node-exporter
     image: prom/node-exporter
