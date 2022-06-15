@@ -26,6 +26,7 @@ services:
   mongodb:
     image: mongo:5.0.5
     mem_limit: 512m
+    cpus: 0.25
     restart: always
     ports:
       - "27017:27017"
@@ -43,6 +44,7 @@ services:
   api_service:
     image: xusai2014/api-service
     mem_limit: 512m
+    cpus: 0.25
     ports:
       - "3003:80"
     volumes:
