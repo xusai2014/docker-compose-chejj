@@ -83,6 +83,16 @@ services:
     image: prom/node-exporter
     ports:
       - '3008:9100'
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - /root/data/grafana_data:/varlib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=pass
+    depends_on:
+      - prometheus
+    ports:
+      - '3009:3000'
 
 volumes:
   logvolume01: {}
