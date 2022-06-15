@@ -84,8 +84,8 @@ services:
       - "3007:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - ./prometheus_host.sh:/etc/prometheus/prometheus_host.sh
+    command: /etc/prometheus/prometheus_host.sh
   node-exporter:
     container_name: node-exporter
     image: prom/node-exporter
@@ -101,6 +101,5 @@ services:
       - prometheus
     ports:
       - '3009:3000'
-
 volumes:
   logvolume01: {}
