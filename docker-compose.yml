@@ -79,7 +79,7 @@ services:
   prometheus:
     image: prom/prometheus
     ports:
-      - "3007:9090"
+      - "3007:80"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
@@ -88,7 +88,7 @@ services:
     container_name: node-exporter
     image: prom/node-exporter
     ports:
-      - '3008:9100'
+      - '3008:80'
   grafana:
     image: grafana/grafana
     volumes:
@@ -98,7 +98,7 @@ services:
     depends_on:
       - prometheus
     ports:
-      - '3009:3000'
+      - '3009:80'
 
 volumes:
   logvolume01: {}
