@@ -6,6 +6,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     volumes:
       - /root/data/https-file:/root/https-file
     links:
@@ -101,5 +102,14 @@ services:
       - prometheus
     ports:
       - '3009:3000'
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter
+    command:
+      -nginx.scrape-uri
+      -http://nginx:8080/stub_status
+    depends_on:
+      - prometheus
+      - nginx
 volumes:
   logvolume01: {}

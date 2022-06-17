@@ -14,3 +14,7 @@ scrape_configs:
     static_configs:
       - targets:
           - 'host.docker.internal:9323'
+  - job_name: 'nginx_exporter'
+    static_configs:
+      - targets:
+          -  'nginx:8080'
