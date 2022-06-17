@@ -102,7 +102,6 @@ services:
       - prometheus
     ports:
       - '3009:3000'
-
   nginx-exporter:
     image: nginx/nginx-prometheus-exporter
     command:
