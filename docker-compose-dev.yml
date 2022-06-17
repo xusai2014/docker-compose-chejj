@@ -1,24 +1,8 @@
-version: "2.2.1"  # optional since v1.27.0
 services:
-  nginx:
-    image: xusai2014/nginx-proxy:latest
-    mem_limit: 1024m
-    ports:
-      - "3001:3001"
-      - "4001:4001"
-    volumes:
-      - ./data/https-file:/root/https-file
-    links:
-      - video:localhost
-      - www:localhost
-      - api_service:localhost
-    depends_on:
-      - mongodb
-      - www
-      - api_service
   mongodb:
     image: mongo:5.0.5
-    mem_limit: 1024m
+    mem_limit: 512m
+    cpus: 0.25
     restart: always
     ports:
       - "27017:27017"
@@ -26,7 +10,7 @@ services:
       - ./data/db:/data/db
   www:
     image: xusai2014/www
-    mem_limit: 1024m
+    mem_limit: 256m
     ports:
       - "3000:80"
     links:
@@ -35,21 +19,38 @@ services:
       - mongodb
   api_service:
     image: xusai2014/api-service
-    mem_limit: 1024m
+    mem_limit: 512m
+    cpus: 0.25
     ports:
       - "3003:80"
+    volumes:
+      - ./data/weixin:/root/weixin
     links:
       - mongodb:localhost
     depends_on:
       - mongodb
-  video:
-    image: xusai2014/music-video
-    mem_limit: 1024m
+  prometheus:
+    image: prom/prometheus
     ports:
-      - "3004:80"
-    links:
-      - mongodb:localhost
+      - "3007:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    ports:
+      - '3008:9100'
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - ./data/grafana_data:/varlib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=pass
     depends_on:
-      - mongodb
+      - prometheus
+    ports:
+      - '3009:3000'
 volumes:
   logvolume01: {}
