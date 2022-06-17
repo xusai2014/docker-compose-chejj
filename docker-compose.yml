@@ -107,6 +107,8 @@ services:
     image: nginx/nginx-prometheus-exporter
     links:
       - nginx:localhost
+    depends_on:
+      - nginx
     command:
       - "-nginx.scrape-uri=http://nginx:8080/stub_status"
     ports:
