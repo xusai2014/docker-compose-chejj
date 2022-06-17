@@ -111,5 +111,7 @@ services:
     depends_on:
       - prometheus
       - nginx
+    ports:
+      - '4000:9113'
 volumes:
   logvolume01: {}
