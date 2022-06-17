@@ -52,5 +52,14 @@ services:
       - prometheus
     ports:
       - '3009:3000'
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter
+    command:
+      -nginx.scrape-uri
+      -http://nginx:8080/stub_status
+    depends_on:
+      - prometheus
+    ports:
+      - '9113'
 volumes:
   logvolume01: {}

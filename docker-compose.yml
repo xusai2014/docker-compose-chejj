@@ -103,6 +103,7 @@ services:
     ports:
       - '3000'
   nginx-exporter:
+    container_name: nginx-exporter
     image: nginx/nginx-prometheus-exporter
     command:
       -nginx.scrape-uri
