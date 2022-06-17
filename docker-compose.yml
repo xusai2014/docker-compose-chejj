@@ -106,11 +106,7 @@ services:
     container_name: nginx-exporter
     image: nginx/nginx-prometheus-exporter
     command:
-      -nginx.scrape-uri
-      -http://nginx:8080/stub_status
-    depends_on:
-      - prometheus
-      - nginx
+      - "-nginx.scrape-uri=http://nginx:8080/stub_status"
     ports:
       - '9113'
 volumes:
