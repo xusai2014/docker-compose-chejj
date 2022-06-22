@@ -45,7 +45,7 @@ services:
   api_service:
     image: xusai2014/api-service
     mem_limit: 512m
-    cpus: 0.25
+    cpus: "0.25"
     ports:
       - "80"
     volumes:
