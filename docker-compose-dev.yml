@@ -45,12 +45,48 @@ services:
   grafana:
     image: grafana/grafana
     volumes:
-      - ./data/grafana_data:/varlib/grafana
+      - ./data/grafana_data:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=pass
     depends_on:
       - prometheus
     ports:
       - '3009:3000'
+  redis:
+    image: "redis:6.2.4-alpine"
+    volumes:
+      - ./data/sentry-redis:/data
+    ports:
+      - "6379"
+  postgres:
+    image: "postgres:9.6"
+    restart: always
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_DB: "sentry"
+    volumes:
+      - ./data/postgresql_data:/var/lib/postgresql/data
+  sentry:
+    image: sentry:latest
+    mem_limit: 256m
+    environment:
+      SENTRY_REDIS_HOST: "redis"
+      SENTRY_SECRET_KEY: "secret"
+      SENTRY_POSTGRES_HOST: "postgres"
+      SENTRY_DB_NAME: "sentry"
+      SENTRY_FILESTORE_DIR: /var/lib/sentry/files
+      PGDATA: /var/lib/sentry/data/pgdata
+    volumes:
+      - ./data/sentry:/var/lib/sentry
+    ports:
+      - 8081:9000
+    depends_on:
+      - redis
+      - postgres
+    links:
+      - redis:localhost
+      - postgres:localhost
 volumes:
   logvolume01: {}
