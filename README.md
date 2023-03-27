@@ -3,10 +3,10 @@
 
 ## 可访问网址
 
-- https://useweb3.chejj.cc/
-- https://www.chejj.cc/
-- https://web3.chejj.cc/
-- https://grafana.chejj.cc/d/rYdddlPWk/node-exporter-full?orgId=1&refresh=1m
+- https://useweb3.flygpt.cc/
+- https://www.flygpt.cc/
+- https://web3.flygpt.cc/
+- https://grafana.flygpt.cc/d/rYdddlPWk/node-exporter-full?orgId=1&refresh=1m
 
 ## 项目管理
 
