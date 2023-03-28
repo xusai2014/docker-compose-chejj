@@ -60,15 +60,15 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
-  video:
-    image: xusai2014/music-video
-    mem_limit: 256m
-    ports:
-      - "80"
-    links:
-      - mongodb:localhost
-    depends_on:
-      - mongodb
+#  video:
+#    image: xusai2014/music-video
+#    mem_limit: 256m
+#    ports:
+#      - "80"
+#    links:
+#      - mongodb:localhost
+#    depends_on:
+#      - mongodb
   useweb3:
     image: xusai2014/useweb3
     mem_limit: 256m
@@ -85,39 +85,39 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - "9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  node-exporter:
-    container_name: node-exporter
-    image: prom/node-exporter
-    ports:
-      - '9100'
-  grafana:
-    image: grafana/grafana
-    volumes:
-      - /root/data/grafana_data:/varlib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=pass
-    depends_on:
-      - prometheus
-    ports:
-      - '3000'
-  nginx-exporter:
-    container_name: nginx-exporter
-    image: nginx/nginx-prometheus-exporter
-    links:
-      - nginx:localhost
-    depends_on:
-      - nginx
-    command:
-      - "-nginx.scrape-uri=http://nginx:8080/stub_status"
-    ports:
-      - '9113'
+#  prometheus:
+#    image: prom/prometheus
+#    ports:
+#      - "9090"
+#    volumes:
+#      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+#  node-exporter:
+#    container_name: node-exporter
+#    image: prom/node-exporter
+#    ports:
+#      - '9100'
+#  grafana:
+#    image: grafana/grafana
+#    volumes:
+#      - /root/data/grafana_data:/varlib/grafana
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=pass
+#    depends_on:
+#      - prometheus
+#    ports:
+#      - '3000'
+#  nginx-exporter:
+#    container_name: nginx-exporter
+#    image: nginx/nginx-prometheus-exporter
+#    links:
+#      - nginx:localhost
+#    depends_on:
+#      - nginx
+#    command:
+#      - "-nginx.scrape-uri=http://nginx:8080/stub_status"
+#    ports:
+#      - '9113'
 volumes:
   logvolume01: {}
