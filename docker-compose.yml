@@ -42,6 +42,17 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
+  edu:
+    image: xusai2014/edu
+    mem_limit: 256m
+    ports:
+      - "80"
+    volumes:
+      - /root/data/weixin:/root/weixin
+    links:
+      - mongodb:localhost
+    depends_on:
+      - mongodb
   api_service:
     image: xusai2014/api-service
     deploy:
