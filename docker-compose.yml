@@ -21,6 +21,7 @@ services:
       - www
       - api_service
       - useweb3
+      - redis
 #      - grafana
 #      - prometheus
 #      - node-exporter
@@ -63,8 +64,10 @@ services:
       - /root/data/weixin:/root/weixin
     links:
       - mongodb:localhost
+      - redis:localhost
     depends_on:
       - mongodb
+      - redis
   api_service:
     image: xusai2014/api-service
     deploy:
