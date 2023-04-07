@@ -70,6 +70,7 @@ services:
       - "80"
     volumes:
       - /root/data/weixin:/root/weixin
+      - /root/data/env/edu:/root/edu
     links:
       - mongodb:localhost
     depends_on:
