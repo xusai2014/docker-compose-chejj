@@ -10,7 +10,7 @@ services:
     volumes:
       - /root/data/https-file:/root/https-file
     links:
-#      - video:localhost
+      - video:localhost
       - www:localhost
       - api_service:localhost
 #      - grafana:localhost
@@ -22,6 +22,7 @@ services:
       - api_service
       - useweb3
       - redis
+      - video
 #      - grafana
 #      - prometheus
 #      - node-exporter
@@ -75,15 +76,15 @@ services:
       - mongodb:localhost
     depends_on:
       - mongodb
-#  video:
-#    image: xusai2014/music-video
-#    mem_limit: 256m
-#    ports:
-#      - "80"
-#    links:
-#      - mongodb:localhost
-#    depends_on:
-#      - mongodb
+  video:
+    image: xusai2014/music-video
+    mem_limit: 256m
+    ports:
+      - "80"
+    links:
+      - mongodb:localhost
+    depends_on:
+      - mongodb
   useweb3:
     image: xusai2014/useweb3
     mem_limit: 256m
